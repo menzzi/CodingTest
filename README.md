@@ -1,5 +1,5 @@
 # Baekjoon & programmers
-- java
+- Java
 - MySQL
 
 
