@@ -1,15 +1,17 @@
-import java.util.HashMap;
+import java.util.*;
 
 class Solution {
     public int solution(int[] nums) {
-        int answer = 0;
-        int size = nums.length/2;
-        HashMap<Integer,Integer> hash = new HashMap();
-        for( int i=0;i<nums.length;i++){
-            hash.put(nums[i],hash.getOrDefault(nums[i],0)+1);
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
+        for(int i=0;i<nums.length;i++){
+            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
         }
-        if(hash.size() >size)answer=size;
-        else answer = hash.size();
-        return answer;
+        if(nums.length/2 <= map.size()){
+            return nums.length/2;
+        }else{
+            return map.size();
+        }
+        
     }
 }
