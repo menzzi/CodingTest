@@ -2,49 +2,50 @@ import java.util.*;
 
 class Solution {
     public int[] solution(String[] genres, int[] plays) {
-        int[] answer = {};
-        HashMap<String,Integer> genre = new HashMap();
+        HashMap<String,Integer> genre = new HashMap<>();
         for(int i=0;i<genres.length;i++){
             genre.put(genres[i],genre.getOrDefault(genres[i],0)+plays[i]);
         }
-        ArrayList<String> mapToGenre = new ArrayList<>();
-        for(String item : genre.keySet()){
-            mapToGenre.add(item);
-        }
-        mapToGenre.sort((o1,o2)-> genre.get(o2)-genre.get(o1));
+        List<String> keySet = new ArrayList<>(genre.keySet());
         
-        ArrayList<Integer> idx = new ArrayList<>();
-        for(int i=0;i<mapToGenre.size();i++){
-            String g = mapToGenre.get(i);
-            
-            int max=0;
-            int firstIdx = -1;
-            for(int j=0;j<genres.length;j++){
-                if(g.equals(genres[j]) && max < plays[j]){
-                    max = plays[j];
-                    firstIdx = j;
+        keySet.sort(new Comparator<String>(){
+            @Override
+            public int compare(String o1, String o2){
+                return genre.get(o2).compareTo(genre.get(o1));
+            }
+        });
+        Queue<Integer> q = new LinkedList<>();
+        for(String key:keySet){
+            int max1 = 0;
+            int num1 = 0;
+            for(int i=0;i<genres.length;i++){
+                if(genres[i].equals(key)){
+                    if(plays[i]>max1){
+                        max1 = plays[i];
+                        num1 = i;
+                    }
                 }
             }
-            
-            max=0;
-            int secondIdx = -1;
-            for(int j=0;j<genres.length;j++){
-                if(g.equals(genres[j]) && max < plays[j] && j!=firstIdx){
-                    max = plays[j];
-                    secondIdx = j;
+            q.offer(num1);
+            int max2 = 0;
+            int num2 = -1;
+            for(int i=0;i<genres.length;i++){
+                if(genres[i].equals(key)){
+                    if(plays[i]>max2 && i != num1){
+                        max2 = plays[i];
+                        num2 = i;
+                    }
                 }
             }
-            
-            idx.add(firstIdx);
-            if(secondIdx>=0) idx.add(secondIdx);
-            
+            if(num2 != -1)q.offer(num2);
         }
-        
-        answer = new int[idx.size()];
-        for(int i=0;i<idx.size();i++){
-                answer[i] = idx.get(i);
+        int[] answer = new int[q.size()];
+        int i=0;
+        while(!q.isEmpty()){
+            answer[i] = q.poll();
+            i+=1;
         }
-        
+
         return answer;
     }
 }
