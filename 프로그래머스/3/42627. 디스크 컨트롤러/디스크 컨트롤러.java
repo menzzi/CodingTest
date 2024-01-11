@@ -2,25 +2,30 @@ import java.util.*;
 
 class Solution {
     public int solution(int[][] jobs) {
-        int answer = 0;
-        int idx = 0;
-        PriorityQueue<int[]> wq = new PriorityQueue<>((o1, o2) -> o1[1] - o2[1]);
-        Arrays.sort(jobs,(o1,o2)-> o1[0]-o2[0]);
-        int time = jobs[0][0];
         
-        while(idx<jobs.length || !wq.isEmpty()){
-            while(idx<jobs.length && jobs[idx][0]<=time){
-                wq.offer(jobs[idx]);
-                idx++;
+        Arrays.sort(jobs,(o1,o2)->o1[0]-o2[0]);
+        PriorityQueue<int[]> q = new PriorityQueue<>((a,b)->a[1]-b[1]);
+        
+        int answer = 0;
+        int time = 0;
+        int cnt = 0;
+        int idx = 0;
+        
+        while(true){
+            if(cnt == jobs.length) break;
+            
+            while(idx<jobs.length && jobs[idx][0] <= time){
+                q.offer(jobs[idx++]);
             }
-            if(wq.isEmpty()){
+                
+            if(!q.isEmpty()){
+                int[] poll = q.poll();
+                cnt++;
+                answer += time - poll[0] + poll[1];
+                time += poll[1];
+            }else{
                 time = jobs[idx][0];
-                wq.offer(jobs[idx]);
-                idx++;
             }
-            int[] work = wq.poll();
-            time += work[1];
-            answer += time - work[0];
         }
         
         return answer/jobs.length;
