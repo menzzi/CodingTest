@@ -23,7 +23,7 @@ class Solution {
                     if(op[i][j].equals(subList.get(k))){
                         subList.set(k-1,cal(subList.get(k),subList.get(k-1),subList.get(k+1)));
                         subList.remove(k);
-                        subList.remove(k);
+                        subList.remove(k); // k 제거해서 k+1이 k 가 됨
                         k-=1;
                     }
                 }
