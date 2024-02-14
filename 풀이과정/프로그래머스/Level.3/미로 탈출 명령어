@@ -1,1 +1,48 @@
+import java.util.*;
 
+class Solution {
+    static int[] dx = {1,0,0,-1};
+    static int[] dy = {0,-1,1,0};
+    static String[] s = {"d","l","r","u"};
+    ArrayList<String> list = new ArrayList<>();
+    public String solution(int n, int m, int x, int y, int r, int c, int k) {
+        int[][] map = new int[n+1][m+1];
+        int dis = Math.abs(r-x) + Math.abs(c-y);
+        if(k<dis)return "impossible";
+        else if(k>dis && (k-dis)%2!=0) return "impossible";
+        DFS(n,m,x,y,r,c,k,"",0);
+        if(list.size()==0) return "impossible";
+        Collections.sort(list);
+        return list.get(0);
+    }
+    public void DFS(int n, int m, int cx, int cy, int r, int c, int k,String str,int cnt){
+        if(cnt > k) return;
+        else if(cnt == k){
+            if(cx==r && cy==c && str.length()==k){
+                list.add(str);
+                return;
+            }else return;
+        }
+        for(int i=0;i<4;i++){
+            int nx = cx + dx[i];
+            int ny = cy + dy[i];
+            if(nx >0 && nx <=n && ny > 0 && ny<=m){
+                cnt++;
+                str += s[i];
+                if(cnt==k && nx==r && ny==c && str.length()==k){
+                    list.add(str);
+                    return; 
+                }
+                DFS(n,m,nx,ny,r,c,k,str,cnt);
+                cnt--;
+                str = str.substring(0,str.length()-1);
+            }
+        }
+    }
+}
+
+
+
+
+- 시간 초과를 겪고 있다... 이유를 모르겠다...
+- DFS 시간 초과로 인해 BFS도 도전해봤지만 동일한 결과  DFS가 나에겐 좀 더 접근이 쉬워서 우선 DFS로 해결해보려고 한다.
