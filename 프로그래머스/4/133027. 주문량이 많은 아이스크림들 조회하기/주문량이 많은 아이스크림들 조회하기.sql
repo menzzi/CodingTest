@@ -1,17 +1,6 @@
 -- 코드를 입력하세요
-with T as(
-    select *
-    from FIRST_HALF
-    
-    union all
-    
-    select *
-    from JULY
-)
-
-
 SELECT FLAVOR
-from T
-group by FLAVOR
-order by sum(TOTAL_ORDER) desc
-limit 3
+FROM (SELECT * FROM FIRST_HALF UNION ALL SELECT * FROM JULY) T
+GROUP BY FLAVOR
+ORDER BY SUM(TOTAL_ORDER) DESC
+LIMIT 3
