@@ -1,0 +1,41 @@
+```java
+import java.util.*;
+
+class Solution {
+    public int solution(int cacheSize, String[] cities) {
+        int answer = 0;
+        if(cacheSize == 0) return cities.length * 5;
+        
+        LinkedList<String> list = new LinkedList<>();
+        
+        for(int i=0;i<cities.length;i++){
+            String key = cities[i].toLowerCase();
+            if(!list.contains(key)){
+                if(list.size()>=cacheSize){
+                    list.remove(0);
+                }
+                list.add(key);
+                answer+=5;
+            }else{
+                answer+=1;
+                list.remove(key);
+                list.add(key);
+            }
+        }
+        return answer;
+    }
+}
+```
+
+---
+
+- 캐시 크기가 0 일때는 배열 크기 만큼 miss가 나기때문에 배열 크기 * 5를 리턴해야한다.  
+- 조건 : 대소문자 구분 없이 => cities[i].toLowerCase(); 모두 소문자로 만들어서 처리한다.  
+- 실수 ...
+  ```
+  if(list.size()>=cacheSize){
+    list.remove(0);
+    list.add(key);
+  }
+  ``` 
+  key 값을 리스트에 넣는건 캐시 사이즈를 초과해도 넣어줘야하는 부분!! if문에서는 제거만 다뤄야 한다. 
