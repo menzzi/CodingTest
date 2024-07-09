@@ -61,7 +61,8 @@ class Result {
     public static void union(int a,int b){
         int pa = findPar(a);
         int pb = findPar(b);
-        if(pa != pb) parent[b] = a;
+        if(pa < pb) parent[pb] = pa;
+        else parent[pa] = pb;
     }
 }
 
@@ -102,7 +103,6 @@ public class Solution {
         bufferedWriter.close();
     }
 }
-
 
 ```
 
