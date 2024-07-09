@@ -125,5 +125,5 @@ public class Solution {
         else parent[a] = b;
     }
     ```
-    -> 바꾸기 전 코드
+    -> 바꾸기 전 코드  
     왜 그랬징,,,
