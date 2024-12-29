@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2024년 1월 2일 9:55:4
+2024년 12월 29일 16:57:25
 
 ### 문제 설명
 
@@ -75,43 +75,14 @@ Empty
 <th>DATE_OF_BIRTH</th>
 </tr>
 </thead>
-        <tbody><tr>
-<td><code>jiho92@naver.com</code></td>
-<td>이지호</td>
-<td>01076432111</td>
-<td>W</td>
-<td>1992-02-12</td>
-</tr>
-<tr>
-<td><code>jiyoon22@hotmail.com</code></td>
-<td>김지윤</td>
-<td>01032324117</td>
-<td>W</td>
-<td>1992-02-22</td>
-</tr>
-<tr>
-<td><code>jihoon93@hanmail.net</code></td>
-<td>김지훈</td>
-<td>01023258688</td>
-<td>M</td>
-<td>1993-02-23</td>
-</tr>
-<tr>
-<td><code>seoyeons@naver.com</code></td>
-<td>박서연</td>
-<td>01076482209</td>
-<td>W</td>
-<td>1993-03-16</td>
-</tr>
-<tr>
-<td><code>yoonsy94@gmail.com</code></td>
-<td>윤서연</td>
-<td>NULL</td>
-<td>W</td>
-<td>1994-03-19</td>
-</tr>
-</tbody>
+        <tbody></tbody>
       </table>
+<p>| <code>jiho92@naver.com</code> | 이지호 | 01076432111 | W | 1992-02-12 |<br>
+| <code>jiyoon22@hotmail.com</code> | 김지윤 | 01032324117 | W | 1992-02-22 |<br>
+| <code>jihoon93@hanmail.net</code> | 김지훈 | 01023258688 | M | 1993-02-23 |<br>
+| <code>seoyeons@naver.com</code> | 박서연 | 01076482209 | W | 1993-03-16 |<br>
+| <code>yoonsy94@gmail.com</code> | 윤서연 | NULL | W | 1994-03-19 | </p>
+
 <p>SQL을 실행하면 다음과 같이 출력되어야 합니다.</p>
 <table class="table">
         <thead><tr>
