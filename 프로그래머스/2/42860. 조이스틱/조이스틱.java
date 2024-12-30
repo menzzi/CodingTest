@@ -1,20 +1,21 @@
-import java.util.*;
 class Solution {
     public int solution(String name) {
-        
         int answer = 0;
-        int move = name.length()-1;
+        int length = name.length();
+        int move = length - 1;
         
-        for(int i=0;i<name.length();i++){
-            if(name.charAt(i) > 'M') answer += 'Z' - name.charAt(i) +1;
-            else answer += name.charAt(i) - 'A';
+        for(int i = 0; i< length; i++){
+            char target = name.charAt(i);
+            if(target <= 'M'){
+                answer += target - 'A';
+            }else{
+                answer += 'Z' - target + 1;
+            }
             
-            int idx = i+1;
-            while(idx < name.length() && name.charAt(idx) == 'A') idx++;
-            
-            move = Math.min(move,i*2+name.length()-idx);
-            move = Math.min(move,(name.length()-idx)*2 + i);
-            
+            int index = i+1;
+            while(index < length && name.charAt(index) == 'A') index++;
+            move = Math.min(move, i * 2 + length - index);
+            move = Math.min(move, (length - index) * 2 + i);
         }
         answer += move;
         return answer;
