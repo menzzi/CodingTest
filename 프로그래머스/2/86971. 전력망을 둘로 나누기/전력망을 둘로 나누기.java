@@ -1,50 +1,47 @@
 import java.util.*;
 
 class Solution {
-    static int[][] graph;
-        
+    static int[][] map; 
+    static boolean[] visited;
     public int solution(int n, int[][] wires) {
         int answer = n;
-        graph = new int[n+1][n+1];
         
-        for(int i=0;i<wires.length;i++){
-            graph[wires[i][0]][wires[i][1]] = 1;
-            graph[wires[i][1]][wires[i][0]] = 1;
+        map = new int[n+1][n+1];
+        
+        for(int i = 0; i < wires.length; i++){
+            map[wires[i][0]][wires[i][1]] = 1;
+            map[wires[i][1]][wires[i][0]] = 1;
         }
-        for(int i=0;i<wires.length;i++){
-            int a = wires[i][0];
-            int b = wires[i][1];
-            
-            graph[a][b] = 0;
-            graph[b][a] = 0;
-            
-            answer = Math.min(answer,bfs(n,a));
-            
-            graph[a][b] = 1;
-            graph[b][a] = 1;
+        
+       for(int i = 0; i < wires.length; i++){
+            map[wires[i][0]][wires[i][1]] = 0;
+            map[wires[i][1]][wires[i][0]] = 0;
+            answer = Math.min(answer, findConnect(n, wires[i][0]));
+            map[wires[i][0]][wires[i][1]] = 1;
+            map[wires[i][1]][wires[i][0]] = 1;
         }
         
         return answer;
     }
-    public int bfs(int n,int a){
-        int[] visited = new int[n+1];
-        int cnt = 1;
+    
+    private int findConnect(int n, int wire){
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(wire);
         
-        Queue<Integer> q = new LinkedList<>();
-        q.offer(a);
+        visited = new boolean[n+1];
+        int count = 1;
         
-        while(!q.isEmpty()){
-            int target = q.poll();
-            visited[target] = 1;
-            
-            for(int i=1;i<=n;i++){
-                if(visited[i]==1)continue;
-                if(graph[target][i]==1){
-                    q.offer(i);
-                    cnt++;
+        while(!queue.isEmpty()){
+            int poll = queue.poll();
+            visited[poll] = true;
+            for(int i = 1; i <= n ;i++){
+                if(visited[i])continue;
+                if(map[poll][i] == 1){
+                    queue.add(i);
+                    count++;
                 }
             }
         }
-        return (int)Math.abs(n-2*cnt);
+        return Math.abs(n - 2*count);
     }
 }
