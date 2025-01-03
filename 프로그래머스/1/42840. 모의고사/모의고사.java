@@ -2,27 +2,38 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] answers) {
-        int[] answer = {};
-        int[] a = {1,2,3,4,5};
-        int[] b = {2,1,2,3,2,4,2,5};
-        int[] c = {3,3,1,1,2,2,4,4,5,5};
-        int[] cnt = new int[3];
+        int[] counts = new int[3];
+        int[] student1 = {1,2,3,4,5};
+        int[] student2 = {2,1,2,3,2,4,2,5};
+        int[] student3 = {3,3,1,1,2,2,4,4,5,5};
         
-        for(int i = 0;i<answers.length;i++){
-            if(answers[i]==a[i%5])cnt[0]++;
-            if(answers[i]==b[i%8])cnt[1]++;
-            if(answers[i]==c[i%10])cnt[2]++;
+        
+        for(int i = 0; i < answers.length; i++){
+            if(student1[i % 5] == answers[i]) counts[0]++;
+            if(student2[i % 8] == answers[i]) counts[1]++;
+            if(student3[i % 10] == answers[i]) counts[2]++;
         }
-        int max = Math.max(cnt[0],Math.max(cnt[1],cnt[2]));
-        List<Integer> list = new ArrayList<>();
-        for(int i=0;i<3;i++){
-            if(max == cnt[i])list.add(i+1);
+        
+        int max = -1;
+        int maxCount = 0;
+        for(int count : counts){
+             if (count > max) {
+                max = count;
+                maxCount = 1;
+            } else if (count == max) {
+                maxCount++;
+            }
         }
-        answer = new int[list.size()];
-        int j = 0;
-        for(int num:list){
-            answer[j++] = num;
+        
+        int[] answer = new int[maxCount];
+        int index = 0;
+        for(int i = 0; i < counts.length; i++){
+            if(max == counts[i]) {
+                answer[index] = i+1;
+                index++;
+            }
         }
+        
         return answer;
     }
 }
