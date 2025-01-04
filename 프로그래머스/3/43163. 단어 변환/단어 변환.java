@@ -1,39 +1,40 @@
 import java.util.*;
-import java.lang.Math;
 
 class Solution {
-    static int answer = 50;
-    static boolean[] visited;
     public int solution(String begin, String target, String[] words) {
-        visited = new boolean[words.length];
-        if(begin == target) return 1;
-        dfs(begin,target,words,0);
-        if(answer == 50) return 0;
+        int answer = 0;
+        
+        if(!Arrays.asList(words).contains(target)) return 0;
+        
+        Queue<String> queue = new LinkedList<>();
+        queue.add(begin);
+        
+        boolean[] visited = new boolean[words.length];
+        
+        while(!queue.isEmpty()){
+            String poll = queue.poll();
+            if(poll.equals(target)) break;
+            
+            for(int i = 0; i < words.length ; i++){
+                if(!visited[i] && isOneDifference(poll, words[i])){
+                    visited[i] = true;
+                    queue.add(words[i]);
+                    answer++;
+                    break;
+                }
+            }
+        }
         return answer;
     }
-    
-    public boolean diff(String a,String b){
+    private boolean isOneDifference(String first, String second) {
         int count = 0;
-        for(int i=0;i<a.length();i++){
-            if(a.charAt(i)!=b.charAt(i)) count++;
+        for(int i = 0; i < first.length() ; i++){
+            if(first.charAt(i) != second.charAt(i)){
+                count ++;
+            }
+            if(count > 1) return false;
         }
         if(count == 1) return true;
         return false;
-    }
-    
-    public void dfs(String current, String target, String[] words, int step){
-        if(answer <= step) return;
-        if(current.equals(target)) {
-            answer = Math.min(step,answer);
-            return;
-        }
-        for(int i=0;i<words.length;i++){
-            if(diff(current,words[i]) && !visited[i]){
-                visited[i] = true;
-                dfs(words[i],target,words,step+1);
-                visited[i] = false;
-            }
-        }
-        return;
     }
 }
