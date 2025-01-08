@@ -1,48 +1,48 @@
 import java.util.*;
 
 class Solution {
-    static HashSet<Integer> set = new HashSet<>();
-    static boolean[] check = new boolean[7];
+    static Set<Integer> set = new HashSet<>();
+    static boolean[] visited = new boolean[7];
     
     public int solution(String numbers) {
-        String tmp = "";
-        for(int i = 1; i <= numbers.length(); i++){
-            makeString(numbers,tmp,i);
+        String[] number = numbers.split("");
+        StringBuilder sb = new StringBuilder("");
+        
+        for(int i = 1; i <= number.length; i++) {
+            recur(number, i, sb);
         }
-        int answer = set.size();
-        return answer;
+        
+        return set.size();
     }
     
-    private boolean isPrime(int number){
-        if(number < 2) return false;
-        if(number < 4) return true;
-//         if (number % 2 == 0 || number % 3 == 0) return false;
-        
-//         for(int i = 5; i * i <= number; i+=6){
-//             if(number % i == 0 || number % (i+2) == 0) return false;
-//         }
-        
-        for (int i = 2; i * i <= number; i++) {
-            if (number % i == 0) return false;
-        }
-        return true;
-    }
-    
-    private void makeString(String n, String tmp, int length){
-        if(tmp.length() == length){
-            if(isPrime(Integer.parseInt(tmp))){
-                set.add(Integer.parseInt(tmp));
+    public void recur(String[] number, int len, StringBuilder sb) {
+        if(len == sb.length()){
+            int num = Integer.parseInt(sb.toString());
+            if(isPrime(num)) {
+                set.add(num);
             }
             return;
         }
         
-        for(int j = 0; j < n.length(); j++){
-            if(check[j]) continue;
-            tmp += n.charAt(j);
-            check[j] = true;
-            makeString(n,tmp,length);
-            check[j] = false;
-            tmp = tmp.substring(0,tmp.length()-1);
+        for(int j = 0; j < number.length; j++){
+            if(!visited[j]) {
+                sb.append(number[j]);
+                visited[j] = true;
+                recur(number, len, sb);
+                visited[j] = false;
+                sb.deleteCharAt(sb.length() - 1);
+            }
         }
+    }
+    
+    private boolean isPrime(int num) {
+        if(num <= 1) return false;
+        if(num <= 3) return true;
+        
+        for(int i = 2; i * i <= num; i++) {
+            if(num % i == 0) return false;
+        }
+        
+        return true;
     }
 }
