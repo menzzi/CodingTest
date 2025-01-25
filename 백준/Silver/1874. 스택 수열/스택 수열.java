@@ -1,34 +1,38 @@
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
+import java.io.*;
 
-public class Main{
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		
-		StringBuilder sb = new StringBuilder();
-		Stack<Integer> st = new Stack<>();
-		
-		int N = scan.nextInt();
-		
-		int start = 0;
-		
-		while(N --> 0) {
-			int input = scan.nextInt();
-			
-			if(input>start) {
-				for(int i=start+1;i<=input;i++) {
-					st.add(i);
-					sb.append('+').append('\n');
-				}
-				start = input;
-			}else if(st.peek() != input) {
-				System.out.println("NO");
-				return;
-			}
-			
-			st.pop();
-			sb.append('-').append('\n');
-		}
-		System.out.println(sb);
-	}
+class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+
+        Stack<Integer> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+
+        int start = 1;
+        for(int i = 0; i < N; i++) {
+            int number = Integer.parseInt(br.readLine());
+            if(!stack.isEmpty() && stack.peek() == number) {
+                stack.pop();
+                sb.append("-\n");
+            } else if(number >= start) {
+                for(int j = start; j <= number; j++) {
+                    stack.push(j);
+                    sb.append("+\n");
+                }
+                stack.pop();
+                sb.append("-\n");
+                start = number + 1;
+            } else if(stack.peek() < number) {
+                System.out.println("NO");
+                return;
+            }
+        }
+
+        if(!stack.isEmpty()) {
+            System.out.println("NO");
+        } else {
+            System.out.println(sb);
+        }
+    }
 }
