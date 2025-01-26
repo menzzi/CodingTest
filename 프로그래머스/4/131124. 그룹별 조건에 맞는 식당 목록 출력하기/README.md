@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2025년 01월 18일 16:44:39
+2025년 01월 26일 20:40:29
 
 ### 문제 설명
 
@@ -115,14 +115,43 @@ Empty
 <th>DATE_OF_BIRTH</th>
 </tr>
 </thead>
-        <tbody></tbody>
+        <tbody><tr>
+<td><code>jiho92@naver.com</code></td>
+<td>이지호</td>
+<td>01076432111</td>
+<td>W</td>
+<td>1992-02-12</td>
+</tr>
+<tr>
+<td><code>jiyoon22@hotmail.com</code></td>
+<td>김지윤</td>
+<td>01032324117</td>
+<td>W</td>
+<td>1992-02-22</td>
+</tr>
+<tr>
+<td><code>jihoon93@hanmail.net</code></td>
+<td>김지훈</td>
+<td>01023258688</td>
+<td>M</td>
+<td>1993-02-23</td>
+</tr>
+<tr>
+<td><code>seoyeons@naver.com</code></td>
+<td>박서연</td>
+<td>01076482209</td>
+<td>W</td>
+<td>1993-03-16</td>
+</tr>
+<tr>
+<td><code>yelin1130@gmail.com</code></td>
+<td>조예린</td>
+<td>01017626711</td>
+<td>W</td>
+<td>1990-11-30</td>
+</tr>
+</tbody>
       </table>
-<p>| <code>jiho92@naver.com</code> | 이지호 | 01076432111 | W | 1992-02-12 |<br>
-| <code>jiyoon22@hotmail.com</code> | 김지윤 | 01032324117 | W | 1992-02-22 |<br>
-| <code>jihoon93@hanmail.net</code> | 김지훈 | 01023258688 | M | 1993-02-23 |<br>
-| <code>seoyeons@naver.com</code> | 박서연 | 01076482209 | W | 1993-03-16 |<br>
-| <code>yelin1130@gmail.com</code> | 조예린 | 01017626711 | W | 1990-11-30 | </p>
-
 <p><code>REST_REVIEW</code> 테이블이 다음과 같을 때</p>
 <table class="table">
         <thead><tr>
