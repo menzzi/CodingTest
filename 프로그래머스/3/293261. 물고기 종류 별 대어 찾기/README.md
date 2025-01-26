@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 01월 03일 18:05:29
+2025년 01월 26일 16:06:32
 
 ### 문제 설명
 
@@ -65,10 +65,13 @@
 <td>INTEGER</td>
 <td>FALSE</td>
 </tr>
+<tr>
+<td>FISH_NAME</td>
+<td>VARCHAR</td>
+<td>FALSE</td>
+</tr>
 </tbody>
       </table>
-<p>| FISH_NAME | VARCHAR | FALSE |</p>
-
 <hr>
 
 <h5>문제</h5>
@@ -84,23 +87,88 @@
 <h5>예시</h5>
 
 <p>예를 들어 <code>FISH_INFO</code> 테이블이 다음과 같고</p>
-
-<p>ID <br>
-|  FISH_TYPE | LENGTH | TIME |<br>
-| -- | -- | -- | -- |<br>
-| 0 | 0 | 30 | 2021/12/04 |<br>
-| 1 | 0 | 50 | 2020/03/07 |<br>
-| 2 | 0 | 40 | 2020/03/07 |<br>
-| 3 | 1 | 20 | 2022/03/09 |<br>
-| 4 | 1 | NULL | 2022/04/08 |<br>
-| 5 | 2 | 13 | 2021/04/28 |<br>
-| 6 | 0 | 60 | 2021/07/27 |<br>
-| 7 | 0 | 55 | 2021/01/18 |<br>
-| 8 | 2 | 73 | 2020/01/28 |<br>
-| 9 | 1 | 73 | 2021/04/08 |<br>
-| 10 | 2 | 22 | 2020/06/28 |<br>
-| 11 | 2 | 17 | 2022/12/23 |</p>
-
+<table class="table">
+        <thead><tr>
+<th>ID</th>
+<th>FISH_TYPE</th>
+<th>LENGTH</th>
+<th>TIME</th>
+</tr>
+</thead>
+        <tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>30</td>
+<td>2021/12/04</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>50</td>
+<td>2020/03/07</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>40</td>
+<td>2020/03/07</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>20</td>
+<td>2022/03/09</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>NULL</td>
+<td>2022/04/08</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>13</td>
+<td>2021/04/28</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0</td>
+<td>60</td>
+<td>2021/07/27</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0</td>
+<td>55</td>
+<td>2021/01/18</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2</td>
+<td>73</td>
+<td>2020/01/28</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1</td>
+<td>73</td>
+<td>2021/04/08</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2</td>
+<td>22</td>
+<td>2020/06/28</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2</td>
+<td>17</td>
+<td>2022/12/23</td>
+</tr>
+</tbody>
+      </table>
 <p><code>FISH_NAME_INFO</code>  테이블이 다음과 같다면</p>
 <table class="table">
         <thead><tr>
@@ -130,11 +198,22 @@
 <th>LENGTH</th>
 </tr>
 </thead>
-        <tbody></tbody>
+        <tbody><tr>
+<td>6</td>
+<td>BASS</td>
+<td>60</td>
+</tr>
+<tr>
+<td>8</td>
+<td>ANCHOVY</td>
+<td>73</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SNAPPER</td>
+<td>73</td>
+</tr>
+</tbody>
       </table>
-<p>| 6 | BASS | 60 |<br>
-| 8 | ANCHOVY | 73 |<br>
-| 9 | SNAPPER | 73 |</p>
-
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
