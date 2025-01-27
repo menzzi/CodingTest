@@ -1,34 +1,27 @@
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
+import java.io.*;
 
-public class Main{
-    public static void main(String[] args) {
-        
-    	Scanner scan = new Scanner(System.in);
-
-    	int N = scan.nextInt();
-    	
-    	for(int i=0;i<N;i++) {
-    		
-    		System.out.println(stack(scan.next()));
-    	
-    		}
-    	}
-    public static String stack(String s) {
-    	Stack st = new Stack();
-    	for(int i=0;i<s.length();i++) {
-    		char c = s.charAt(i);
-    		
-    		if(c == '(') {
-    			st.push(c);
-    		}else if(st.isEmpty()) {
-    			return "NO";
-    		}else {
-    			st.pop();
-    		}
-    	}
-    	if(st.isEmpty())return "YES";
-    	else return "NO";    
-    	}
-    
+class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine());
+        for(int i = 0; i < T; i++) {
+            Stack<Character> stack = new Stack<>();
+            String str = br.readLine();
+            String answer = "YES";
+            for(int j = 0; j < str.length(); j++) {
+                if(str.charAt(j) == '(') {
+                    stack.push('(');
+                }else {
+                    if(stack.isEmpty()) {
+                        answer = "NO";
+                        break;
+                    }
+                    stack.pop();
+                }
+            }
+            if(!stack.isEmpty()) answer = "NO";
+            System.out.println(answer);
+        }
+    }
 }
