@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.*;
 import java.io.*;
 
@@ -11,7 +10,7 @@ class Main {
 
         Queue<Integer> queue1 = new LinkedList<>();
         Queue<Integer> queue2 = new LinkedList<>();
-        List<Integer> result = new LinkedList<>();
+        Queue<Integer> result = new LinkedList<>();
 
         for(int i = 1; i <= N; i++) {
             queue1.add(i);
@@ -41,12 +40,16 @@ class Main {
             }
         }
 
-        System.out.print("<");
-        for(int i = 0; i < result.size() - 1; i++) {
-            System.out.print(result.get(i) + ", ");
+        StringBuilder sb = new StringBuilder();
+        sb.append("<");
+        while(!result.isEmpty()){
+            if(result.size() == 1) {
+                sb.append(result.poll());
+            }else {
+                sb.append(result.poll()).append(", ");
+            }
         }
-        System.out.print(result.get(result.size() - 1));
-        System.out.print(">");
-
+        sb.append(">");
+        System.out.print(sb.toString());
     }
 }
