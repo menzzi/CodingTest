@@ -1,33 +1,34 @@
 import java.util.*;
+import java.io.*;
 
 class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int number = scanner.nextInt();
-        int[] numbers = new int[number];
-        for(int i = 0; i < number; i++) {
-            numbers[i] = scanner.nextInt();
-        }
+    static int N;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        int[] numbers = new int[N];
 
+        for(int i = 0; i < N; i++) {
+            numbers[i] = Integer.parseInt(br.readLine());
+        }
         Arrays.sort(numbers);
 
         Set<Integer> set = new HashSet<>();
-        for(int i = 0; i < number; i++) {
-            for(int j = i; j < number; j++) {
+        for(int i = 0; i < N; i++) {
+            for(int j = i; j < N; j++) {
                 set.add(numbers[i] + numbers[j]);
             }
         }
 
-        int max = -1;
-        for(int i = number - 1; i > 0; i--) {
-            for(int j = 0; j < number; j++) {
+        int max = Integer.MIN_VALUE;
+        for(int i = N - 1; i > 0; i--) {
+            for(int j = 0; j < N; j++) {
                 int k = numbers[i] - numbers[j];
                 if(set.contains(k)) {
                     max = Math.max(max, numbers[i]);
                 }
             }
         }
-
         System.out.println(max);
     }
 }
