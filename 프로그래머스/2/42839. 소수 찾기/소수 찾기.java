@@ -1,48 +1,41 @@
 import java.util.*;
 
 class Solution {
+    static boolean[] visited;
     static Set<Integer> set = new HashSet<>();
-    static boolean[] visited = new boolean[7];
-    
     public int solution(String numbers) {
-        String[] number = numbers.split("");
-        StringBuilder sb = new StringBuilder("");
-        
-        for(int i = 1; i <= number.length; i++) {
-            recur(number, i, sb);
-        }
-        
-        return set.size();
+        int answer = 0;
+        visited = new boolean[numbers.length()];
+        StringBuilder sb = new StringBuilder();
+        find(numbers, sb);
+        answer = set.size();
+        return answer;
     }
     
-    public void recur(String[] number, int len, StringBuilder sb) {
-        if(len == sb.length()){
-            int num = Integer.parseInt(sb.toString());
-            if(isPrime(num)) {
-                set.add(num);
-            }
-            return;
-        }
-        
-        for(int j = 0; j < number.length; j++){
-            if(!visited[j]) {
-                sb.append(number[j]);
-                visited[j] = true;
-                recur(number, len, sb);
-                visited[j] = false;
-                sb.deleteCharAt(sb.length() - 1);
+    private static void find(String numbers, StringBuilder sb) {
+        for(int i = 0; i < numbers.length(); i++) {
+            if(!visited[i]) {
+                visited[i] = true;
+                sb.append(numbers.charAt(i));
+                if(isPrime(sb.toString())) {
+                    set.add(Integer.parseInt(sb.toString()));
+                }
+                find(numbers, sb);
+                sb.setLength(sb.length() - 1);
+                visited[i] = false;
             }
         }
     }
     
-    private boolean isPrime(int num) {
-        if(num <= 1) return false;
-        if(num <= 3) return true;
+    private static boolean isPrime(String str) {
+        int number = Integer.parseInt(str);
         
-        for(int i = 2; i * i <= num; i++) {
-            if(num % i == 0) return false;
+        if(number <= 1) return false;
+        if(number == 2 || number == 3) return true;
+        
+        for(int i = 2; i <= Math.sqrt(number); i++) {
+            if(number % i == 0) return false;
         }
-        
         return true;
     }
 }
